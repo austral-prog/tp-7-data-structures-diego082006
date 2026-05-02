@@ -11,9 +11,8 @@ def get_coordinate(registro):
     Returns:
         Un string con la coordenada del mapa
     """
-    mapa = len(registro)
     return registro[1]
-
+    
 
 def convert_coordinate(coordenada):
     """
@@ -50,17 +49,13 @@ def create_record(registro_azara, registro_rui):
     Returns:
         Tupla combinada si las coordenadas coinciden, o "not a match" si no.
     """
-    coord_azara = get_coordinate(registro_azara)        
-    coord_azara_convertida = convert_coordinate(coord_azara)  
-    coord_rui = registro_rui[1]  
+    tesoro, coord_azara = registro_azara
+    ubicacion, coord_rui, cuadrante = registro_rui
+
+    coord_azara_convertida = convert_coordinate(coord_azara)
+
     if coord_azara_convertida == coord_rui:
-        return (
-            registro_azara[0],   
-            coord_azara,         
-            registro_rui[0],     
-            coord_rui,           
-            registro_rui[2]      
-        )
+        return (tesoro, coord_azara, ubicacion, coord_rui, cuadrante)
     else:
         return "not a match"
 
